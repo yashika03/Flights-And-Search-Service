@@ -9,7 +9,7 @@ This is the FlightsAndSearch service for the Airline Management Project.
 {
   "development": {
     "username": "root",
-    "password": "Yuku@0310",
+    "password": <your sql password>,
     "database": "Flights_Search_Database_Dev",
     "host": "127.0.0.1",
     "dialect": "mysql"
