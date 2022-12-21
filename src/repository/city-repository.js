@@ -5,11 +5,11 @@ class CityRepository{
         try {
             const city= await City.create({
                 name
-            })
+            });
             return city;
         } catch (error) {
             console.log("Error in the City Repository Layer");
-            throw{error};
+            throw {error};
         }
     }
     async deleteCity(cityId)
@@ -29,7 +29,7 @@ class CityRepository{
     async updateCity(cityId, data)
     {
         try {
-            const city=await City.update({
+            const city=await City.update(data,{
                 where:{
                     id: cityId
                 }
@@ -43,7 +43,7 @@ class CityRepository{
     async getCity(cityId)
     {
         try {
-            const city=City.findByPK(cityId);
+            const city=City.findByPk(cityId);
             return city;
         } catch (error) {
             console.log("Error in the City Repository Layer");

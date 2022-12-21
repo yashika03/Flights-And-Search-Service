@@ -22,7 +22,7 @@ const create= async (req,res)=>{
     }
 }
 
-// DELETE->/city/:id
+//DELETE->/city/:id
 const destroy= async (req,res)=>{
     try {
         const response= await cityservice.deleteCity(req.params.id);
@@ -67,7 +67,7 @@ const update=async (req,res)=>{
 }
 
 // GET->/city/:id
-const get=(req,res)=>{
+const get= async (req,res)=>{
     try {
         const city = await cityservice.getCity(req.params.id);
         return res.status(201).json({
@@ -87,7 +87,7 @@ const get=(req,res)=>{
     }
 }
 
-module.exports={
+module.exports= {
     create,
     destroy,
     update,
