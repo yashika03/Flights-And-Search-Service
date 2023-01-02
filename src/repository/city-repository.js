@@ -13,6 +13,18 @@ class CityRepository{
             throw {error};
         }
     }
+    async createAllCities(data)
+    {
+        try {
+            const response= await City.bulkCreate(data).then(() => {
+                return "Successfully created all the cities";
+            })
+            return response;
+        } catch (error) {
+            console.log("Error in the City Repository Layer");
+            throw {error};
+        }
+    }
     async deleteCity(cityId)
     {
         try {
@@ -68,6 +80,18 @@ class CityRepository{
             }
             const cities= await City.findAll();
             return cities;
+        } catch (error) {
+            console.log("Error in the City Repository Layer");
+            throw{error};
+        }
+    }
+
+    async getAllAirports(cityId)
+    {
+        try {
+            const city= await City.findByPk(cityId);
+            const airports= await city.getAirports();
+            return airports;
         } catch (error) {
             console.log("Error in the City Repository Layer");
             throw{error};

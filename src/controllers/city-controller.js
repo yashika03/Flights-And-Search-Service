@@ -1,12 +1,35 @@
 const {CityService}=require('../services/index');
 const cityservice =new CityService();
-
+const parse = require('parse');
 // PUT->/city
 const create= async (req,res)=>{
     try {
         const city=await cityservice.createCity(req.body);
         return res.status(201).json({
             data: city,
+            success: true,
+            message: 'City created successfully',
+            err:{}
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Not able to create a city',
+            err:error
+        });
+    }
+}
+
+
+const createAll = async (req,res) => {
+    try {
+        console.log(req.body);
+        // return true;
+        const response=await cityservice.createAllCities(req.body);
+        return res.status(201).json({
+            data: response,
             success: true,
             message: 'City created successfully',
             err:{}
@@ -108,10 +131,34 @@ const getAll=async (req,res)=>{
     }
 }
 
+
+
+const getAllAirports= async(req,res) => {
+    try {
+        const airports= await cityservice.getAllAirports(req.params.id);
+        return res.status(200).json({
+            data: airports,
+            message: 'Fetched all the airports successfully',
+            success: true,
+            err:{}
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Not able to get all the airports',
+            err:error
+        });
+    }
+}
+
 module.exports= {
     create,
     destroy,
     update,
     get,
-    getAll
+    getAll, 
+    createAll,
+    getAllAirports
 }
