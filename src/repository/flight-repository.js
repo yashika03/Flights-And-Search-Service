@@ -37,14 +37,10 @@ class FlightRepository{
     }
 
     
-    async getFlight(data)
+    async getFlight(flightId)
     {
         try {
-            const flight= await Flight.findByPk({
-                where:{
-                    flightNumber: data.flightNumber
-                }
-            });
+            const flight= await Flight.findByPk(flightId);
             return flight;
         } catch (error) {
             console.log("Error in the City Repository Layer");
@@ -60,6 +56,21 @@ class FlightRepository{
                 where: filterObject
             });
         return flight;
+        } catch (error) {
+            console.log("Error in the City Repository Layer");
+            throw{error};
+        }
+    }
+
+
+    async updateFlights(flightId, data)
+    {
+        try {
+            await Flight.update(data,{
+                where: {
+                    id: flightId
+                }
+            })
         } catch (error) {
             console.log("Error in the City Repository Layer");
             throw{error};
